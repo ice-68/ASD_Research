@@ -1,1 +1,11 @@
+# 忽略数据文件夹
 abide_data/
+
+# 忽略 PyCharm 设置
+.idea/
+
+# 忽略临时文件/系统文件
+*.docx
+~$*
+.DS_Store
+__pycache__/
