@@ -1,0 +1,22 @@
+{
+  "model": "mlp",
+  "desc": "\u591a\u5c42\u611f\u77e5\u673a (FC\u77e9\u9635\u2192\u5e73\u5766\u5316)",
+  "family": "simple",
+  "fold_accs": null,
+  "args": {
+    "model": "mlp",
+    "list": false,
+    "epochs": 50,
+    "lr": 0.001,
+    "batch_size": 32,
+    "patience": 10,
+    "pca_components": 100,
+    "threshold": 0.3,
+    "hidden": 64,
+    "k_folds": 5,
+    "save": true,
+    "loss": "ce",
+    "family": "simple",
+    "desc": "\u591a\u5c42\u611f\u77e5\u673a (FC\u77e9\u9635\u2192\u5e73\u5766\u5316)"
+  }
+}
