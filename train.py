@@ -253,9 +253,11 @@ def _train_kfold(model_cls, input_dim, args):
     device = torch.device(DEVICE)
 
     ts_data, labels = load_raw_data()
+
+
     if args.family == "gcn_kfold":
+        from torch_geometric.loader import DataLoader as PyGDataLoader
         data_list = _build_pyg_data(ts_data, labels, args.threshold)
-        from torch_geometric.loader import DataLoader
         all_labels = [d.y.item() for d in data_list]
     else:
         X, y = _fc_matrices(ts_data, labels)
@@ -273,8 +275,8 @@ def _train_kfold(model_cls, input_dim, args):
         if args.family == "gcn_kfold":
             train_subset = [data_list[i] for i in tr_idx]
             val_subset = [data_list[i] for i in te_idx]
-            train_loader = DataLoader(train_subset, batch_size=args.batch_size, shuffle=True)
-            val_loader = DataLoader(val_subset, batch_size=args.batch_size, shuffle=False)
+            train_loader = PyGDataLoader(train_subset, batch_size=args.batch_size, shuffle=True)
+            val_loader = PyGDataLoader(val_subset, batch_size=args.batch_size, shuffle=False)
 
             model = model_cls(num_node_features=data_list[0].x.shape[1],
                               hidden_channels=args.hidden).to(device)
